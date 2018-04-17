@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace EvlodGameEngine
+namespace NitsuajGameEngine
 {
     /// <summary>
     /// This is the main type for your game.
@@ -11,6 +11,7 @@ namespace EvlodGameEngine
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Sprite testSprite;
         
         public Game1()
         {
@@ -41,6 +42,7 @@ namespace EvlodGameEngine
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            testSprite = new Sprite(this.Content.Load<Texture2D>("joe_test_anim"), 6, 2);
         }
 
         /// <summary>
@@ -63,7 +65,7 @@ namespace EvlodGameEngine
                 Exit();
 
             // TODO: Add your update logic here
-
+            testSprite.IncrementFrame();
             base.Update(gameTime);
         }
 
@@ -76,6 +78,9 @@ namespace EvlodGameEngine
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            testSprite.Draw(spriteBatch);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }

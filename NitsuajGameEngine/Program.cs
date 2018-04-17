@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EvlodGameEngine
+namespace NitsuajGameEngine
 {
     /// <summary>
     /// The main class.

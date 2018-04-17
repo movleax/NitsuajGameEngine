@@ -9,8 +9,8 @@
     <ProjectGuid>{D5547079-36DB-4C6F-AE36-A7EC185FDA4A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EvlodGameEngine</RootNamespace>
-    <AssemblyName>EvlodGameEngine</AssemblyName>
+    <RootNamespace>NitsuajGameEngine</RootNamespace>
+    <AssemblyName>NitsuajGameEngine</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>DesktopGL</MonoGamePlatform>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>

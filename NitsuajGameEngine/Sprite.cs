@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace EvlodGameEngine
+namespace NitsuajGameEngine
 {
     class Sprite
     {
@@ -25,7 +25,7 @@ namespace EvlodGameEngine
         int totalFrames;
 
 
-        public Sprite(Texture2D Texture, int Rows, int Columns)
+        public Sprite(Texture2D Texture, int Columns, int Rows)
         {
             alpha = 1.0f;
             rotation = 0.0f;
@@ -66,7 +66,9 @@ namespace EvlodGameEngine
 
         public void IncrementFrame()
         {
-            currentFrame = currentFrame < totalFrames ? currentFrame++ : 0;
+            currentFrame = currentFrame < columns ? currentFrame++ : 0;
+
+            drawRect.X = clipWidth * currentFrame;
         }
     }
 }
