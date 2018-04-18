@@ -42,7 +42,10 @@ namespace NitsuajGameEngine
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            testSprite = new Sprite(this.Content.Load<Texture2D>("joe_test_anim"), 6, 2);
+            testSprite = new Sprite(this.Content.Load<Texture2D>("joe_test_anim"), 6, 4);
+            testSprite.DefineAnimation("MoveRight", 0);
+            testSprite.DefineAnimation("MoveLeft", 1);
+            testSprite.SetAnimation("MoveRight");
         }
 
         /// <summary>
@@ -54,6 +57,8 @@ namespace NitsuajGameEngine
             // TODO: Unload any non ContentManager content here
         }
 
+        int k = 0;
+
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
@@ -64,8 +69,16 @@ namespace NitsuajGameEngine
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            if (Keyboard.GetState().IsKeyDown(Keys.Right))
+                testSprite.SetAnimation("MoveRight");
+            if(Keyboard.GetState().IsKeyDown(Keys.Left))
+                testSprite.SetAnimation("MoveLeft");
+                
+
             // TODO: Add your update logic here
-            testSprite.IncrementFrame();
+            if (k++ % 5 == 0)
+                testSprite.IncrementFrame();
+
             base.Update(gameTime);
         }
 
