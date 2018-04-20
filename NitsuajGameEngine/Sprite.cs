@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace NitsuajGameEngine
 {
-    class Sprite
+    class Sprite : IDrawable, IMovable
     {
         // Different properties for drawing the sprite
         private Texture2D texture;
@@ -51,7 +51,7 @@ namespace NitsuajGameEngine
             animations = new Dictionary<string, int>();
 
             drawRect = new Rectangle(0, 0, clipWidth, clipHeight);
-            position = new Vector2(0, 0);
+            position = new Vector2(50, 0);
         }
 
         public void DefineAnimation(string animationName, int Row)
@@ -85,9 +85,19 @@ namespace NitsuajGameEngine
 
         public void IncrementFrame()
         {
-            currentFrame = currentFrame < columns-1 ? currentFrame + 1 : 0;
+            currentFrame = currentFrame < columns - 1 ? currentFrame + 1 : 0;
 
             drawRect.X = clipWidth * currentFrame;
+        }
+
+        public void UpdatePosition()
+        {
+
+        }
+
+        public void SetPosition(Vector2 newPosition)
+        {
+            this.position = newPosition;
         }
     }
 }
