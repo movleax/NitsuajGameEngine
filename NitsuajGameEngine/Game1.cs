@@ -12,6 +12,7 @@ namespace NitsuajGameEngine
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Sprite testSprite;
+        Sprite testSprite2;
         
         public Game1()
         {
@@ -43,9 +44,17 @@ namespace NitsuajGameEngine
 
             // TODO: use this.Content to load your game content here
             testSprite = new Sprite(this.Content.Load<Texture2D>("joe_test_anim"), 6, 4);
+
             testSprite.DefineAnimation("MoveRight", 0);
             testSprite.DefineAnimation("MoveLeft", 1);
             testSprite.SetAnimation("MoveRight");
+
+            testSprite2 = new Sprite(this.Content.Load<Texture2D>("joe_test_anim"), 6, 4);
+
+            testSprite2.DefineAnimation("MoveRight", 0);
+            testSprite2.DefineAnimation("MoveLeft", 1);
+            testSprite2.SetAnimation("MoveRight");
+            testSprite2.SetPosition(new Vector2(100, 100));
         }
 
         /// <summary>
@@ -79,6 +88,9 @@ namespace NitsuajGameEngine
             if (k++ % 5 == 0)
                 testSprite.IncrementFrame();
 
+            if (k % 10 == 0)
+                testSprite2.IncrementFrame();
+
             base.Update(gameTime);
         }
 
@@ -93,6 +105,7 @@ namespace NitsuajGameEngine
             // TODO: Add your drawing code here
             spriteBatch.Begin();
             testSprite.Draw(spriteBatch);
+            testSprite2.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);
