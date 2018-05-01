@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace NitsuajGameEngine
 {
-    class Sprite : IDrawable, IMovable
+    class Sprite : IDrawable
     {
         // Different properties for drawing the sprite
         private Texture2D texture;
@@ -88,16 +88,6 @@ namespace NitsuajGameEngine
             currentFrame = currentFrame < columns - 1 ? currentFrame + 1 : 0;
 
             drawRect.X = clipWidth * currentFrame;
-        }
-
-        public void UpdatePosition()
-        {
-
-        }
-
-        public void SetPosition(Vector2 newPosition)
-        {
-            this.position = newPosition;
         }
     }
 }

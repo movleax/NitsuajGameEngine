@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace NitsuajGameEngine
 {
-    interface IMovable
+    interface IPositionable
     {
-        void UpdatePosition();
-        void SetVelocity(Vector2 newVel);
+        void SetPosition(Vector2 newPosition);
+        void SetPosition(float X, float Y);
+        Vector2 GetPosition();
     }
 }
