@@ -10,6 +10,23 @@ namespace NitsuajGameEngine
     {
         private static Dictionary<string, Sprite> SpriteTable;
 
+        public static void AddSprite(string SpriteName, Sprite NewSprite)
+        {
+            if (SpriteTable == null)
+                SpriteTable = new Dictionary<string, Sprite>();
 
+            SpriteTable.Add(SpriteName, NewSprite);
+        }
+
+        public static Sprite GetSprite(string SpriteName)
+        {
+            if (SpriteTable == null)
+                throw new System.NullReferenceException("There are no Sprites defined!");
+
+            if(SpriteTable.ContainsKey(SpriteName))
+                throw new System.ArgumentException("Sprite does not exist");
+
+            return SpriteTable[SpriteName];
+        }
     }
 }

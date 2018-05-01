@@ -13,12 +13,12 @@ namespace NitsuajGameEngine
 
         public GameObject(string SpriteName)
         {
-
+            gameSprite = ResourceManager.GetSprite(SpriteName);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            throw new NotImplementedException();
+            gameSprite.Draw(spriteBatch);
         }
     }
 }
