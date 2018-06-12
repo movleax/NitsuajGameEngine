@@ -21,18 +21,18 @@ namespace NitsuajGameEngine
             PositionVector = new Vector2(coordinates.X, coordinates.Y);
         }
 
-        public Vector2 GetPosition()
+        public Vector2 GetVectorPosition()
         {
             return PositionVector;
         }
 
-        public void SetPosition(Vector2 newPosition)
+        public void SetVectorPosition(Vector2 newPosition)
         {
             PositionVector.X = newPosition.X;
             PositionVector.Y = newPosition.Y;
         }
 
-        public void SetPosition(float X, float Y)
+        public void SetVectorPosition(float X, float Y)
         {
             PositionVector.X = X;
             PositionVector.Y = Y;

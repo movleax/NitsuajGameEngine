@@ -12,10 +12,10 @@ namespace NitsuajGameEngine
         Position position;
         Vector2 Velocity;
 
-        public Movable()
+        private Movable()
         {
-            Velocity = new Vector2();
-            position = new Position();
+            // Velocity = new Vector2();
+            // position = new Position();
         }
 
         public Movable(Position Pos)
@@ -36,22 +36,22 @@ namespace NitsuajGameEngine
 
         public void UpdatePosition()
         {
-            SetPosition(this.position.X + Velocity.X, this.position.Y + Velocity.Y);
+            SetVectorPosition(this.position.X + Velocity.X, this.position.Y + Velocity.Y);
         }
 
-        public Vector2 GetPosition()
+        public Vector2 GetVectorPosition()
         {
-            throw new NotImplementedException();
+            return position.GetVectorPosition();
         }
 
-        public void SetPosition(Vector2 newPosition)
+        public void SetVectorPosition(Vector2 newPosition)
         {
-            this.position.SetPosition(newPosition);
+            this.position.SetVectorPosition(newPosition);
         }
 
-        public void SetPosition(float X, float Y)
+        public void SetVectorPosition(float X, float Y)
         {
-            this.position.SetPosition(X, Y);
+            this.position.SetVectorPosition(X, Y);
         }
     }
 }

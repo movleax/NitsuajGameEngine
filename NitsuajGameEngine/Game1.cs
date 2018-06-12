@@ -54,7 +54,7 @@ namespace NitsuajGameEngine
             testSprite2.DefineAnimation("MoveRight", 0);
             testSprite2.DefineAnimation("MoveLeft", 1);
             testSprite2.SetAnimation("MoveRight");
-            testSprite2.SetPosition(new Vector2(100, 100));
+            testSprite2.SetVectorPosition(new Vector2(100, 100));
         }
 
         /// <summary>

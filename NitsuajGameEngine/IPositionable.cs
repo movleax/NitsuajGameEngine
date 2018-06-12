@@ -9,8 +9,8 @@ namespace NitsuajGameEngine
 {
     interface IPositionable
     {
-        void SetPosition(Vector2 newPosition);
-        void SetPosition(float X, float Y);
-        Vector2 GetPosition();
+        void SetVectorPosition(Vector2 newPosition);
+        void SetVectorPosition(float X, float Y);
+        Vector2 GetVectorPosition();
     }
 }
