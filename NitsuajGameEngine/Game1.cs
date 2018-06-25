@@ -42,14 +42,16 @@ namespace NitsuajGameEngine
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            ResourceManager.AddSprite("joe_test_anim", new SpritePrototype(this.Content.Load<Texture2D>("joe_test_anim"), 6, 4));
+
             // TODO: use this.Content to load your game content here
-            testSprite = new Sprite(this.Content.Load<Texture2D>("joe_test_anim"), 6, 4);
+            testSprite = ResourceManager.GetSprite("joe_test_anim");
 
             testSprite.DefineAnimation("MoveRight", 0);
             testSprite.DefineAnimation("MoveLeft", 1);
             testSprite.SetAnimation("MoveRight");
 
-            testSprite2 = new Sprite(this.Content.Load<Texture2D>("joe_test_anim"), 6, 4);
+            testSprite2 = ResourceManager.GetSprite("joe_test_anim");
 
             testSprite2.DefineAnimation("MoveRight", 0);
             testSprite2.DefineAnimation("MoveLeft", 1);
