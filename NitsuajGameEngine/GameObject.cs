@@ -13,10 +13,17 @@ namespace NitsuajGameEngine
         private Sprite gameSprite;
         private Position position;
 
-        //public GameObject(string SpriteName)
-        //{
-        //    gameSprite = ResourceManager.GetSprite(SpriteName);
-        //}
+        public GameObject(string SpriteName)
+        {
+            gameSprite = ResourceManager.GetSprite(SpriteName);
+            this.position = new Position();
+        }
+
+        public GameObject(string SpriteName, Position position)
+        {
+            gameSprite = ResourceManager.GetSprite(SpriteName);
+            this.position = position;
+        }
 
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -25,17 +32,19 @@ namespace NitsuajGameEngine
 
         public Vector2 GetVectorPosition()
         {
-            throw new NotImplementedException();
+            return position.GetVectorPosition();
         }
 
         public void SetVectorPosition(Vector2 newPosition)
         {
-            throw new NotImplementedException();
+            position.SetVectorPosition(newPosition);
+            gameSprite.SetVectorPosition(newPosition);
         }
 
         public void SetVectorPosition(float X, float Y)
         {
-            throw new NotImplementedException();
+            position.SetVectorPosition(X, Y);
+            gameSprite.SetVectorPosition(X, Y);
         }
     }
 }

@@ -6,12 +6,12 @@ using System.Collections.Generic;
 
 namespace NitsuajGameEngine
 {
-    class Sprite : IDrawable, IPositionable
+    class Sprite : Animator, IDrawable, IAnimatable
     {
         // Different properties for drawing the sprite
         private Texture2D texture;
         private Position position;
-        private Rectangle drawRect;
+        //private Rectangle drawRect;
         private float alpha;
         private float rotation;
         private Vector2 origin;
@@ -20,17 +20,18 @@ namespace NitsuajGameEngine
         private float zDepth;
 
         // Use these for clipping the sprite sheet
-        private int rows;
-        private int columns;
-        private int clipWidth;
-        private int clipHeight;
-        private int currentFrame;
-        private int totalFrames;
+        //private int rows;
+        //private int columns;
+        //private int clipWidth;
+        //private int clipHeight;
+        //private int currentFrame;
+        //private int totalFrames;
 
         // Use this for storing sprite animations
-        private Dictionary<string, int> animations;
+        //private Dictionary<string, int> animations;
 
         public Sprite(Texture2D Texture, int Columns, int Rows)
+            :base(Texture, Columns, Rows)
         {
             alpha = 1.0f;
             rotation = 0.0f;
@@ -41,39 +42,39 @@ namespace NitsuajGameEngine
 
             texture = Texture;
 
-            rows = Rows;
-            columns = Columns;
-            currentFrame = 0;
-            totalFrames = columns * rows;
-
-            clipWidth = texture.Width / columns;
-            clipHeight = texture.Height / rows;
-            animations = new Dictionary<string, int>();
-
-            drawRect = new Rectangle(0, 0, clipWidth, clipHeight);
+            //rows = Rows;
+            //columns = Columns;
+            //currentFrame = 0;
+            //totalFrames = columns * rows;
+            //
+            //clipWidth = texture.Width / columns;
+            //clipHeight = texture.Height / rows;
+            ////animations = new Dictionary<string, int>();
+            //
+            //drawRect = new Rectangle(0, 0, clipWidth, clipHeight);
             position = new Position(new Vector2(50, 0));
         }
 
-        public void DefineAnimation(string animationName, int Row)
-        {
-            animations.Add(animationName, Row);
-        }
-
-        public void SetAnimation(string animationName)
-        {
-            // don't attempt to change animations of there is no key that exists
-            if (!animations.ContainsKey(animationName))
-                return;
-
-            drawRect.Y = animations[animationName] * clipHeight;
-        }
+        //public void DefineAnimation(string animationName, int Row)
+        //{
+        //    animations.Add(animationName, Row);
+        //}
+        //
+        //public void SetAnimation(string animationName)
+        //{
+        //    // don't attempt to change animations of there is no key that exists
+        //    if (!animations.ContainsKey(animationName))
+        //        return;
+        //
+        //    drawRect.Y = animations[animationName] * clipHeight;
+        //}
 
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(
                             texture,
                             position.GetVectorPosition(),
-                            drawRect,
+                            this.GetDrawRect()/*drawRect*/,
                             Color.White * alpha,
                             rotation,
                             origin,
@@ -83,12 +84,12 @@ namespace NitsuajGameEngine
                         );
         }
 
-        public void IncrementFrame()
-        {
-            currentFrame = currentFrame < columns - 1 ? currentFrame + 1 : 0;
-
-            drawRect.X = clipWidth * currentFrame;
-        }
+        //public void IncrementFrame()
+        //{
+        //    currentFrame = currentFrame < columns - 1 ? currentFrame + 1 : 0;
+        //
+        //    drawRect.X = clipWidth * currentFrame;
+        //}
 
         public void SetVectorPosition(Vector2 newPosition)
         {

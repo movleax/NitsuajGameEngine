@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace NitsuajGameEngine
 {
-    class Position : IPositionable
+    public class Position : IPositionable
     {
         Vector2 PositionVector;
 
