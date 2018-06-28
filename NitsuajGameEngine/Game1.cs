@@ -13,6 +13,8 @@ namespace NitsuajGameEngine
         SpriteBatch spriteBatch;
         Sprite testSprite;
         Sprite testSprite2;
+        Player player;
+        PlayerInput playerInput;
         
         public Game1()
         {
@@ -42,21 +44,23 @@ namespace NitsuajGameEngine
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            ResourceManager.AddSprite("joe_test_anim", new SpritePrototype(this.Content.Load<Texture2D>("joe_test_anim"), 6, 4));
+            SpritePrototype spriteProto = new SpritePrototype(this.Content.Load<Texture2D>("joe_test_anim"), 5, 6, 4);
+            spriteProto.DefineAnimation("MoveRight", 0);
+            spriteProto.DefineAnimation("MoveLeft", 1);
+            spriteProto.SetAnimation("MoveRight");
+            ResourceManager.AddSprite("joe_test_anim", spriteProto);
 
             // TODO: use this.Content to load your game content here
-            testSprite = ResourceManager.GetSprite("joe_test_anim");
-
-            testSprite.DefineAnimation("MoveRight", 0);
-            testSprite.DefineAnimation("MoveLeft", 1);
-            testSprite.SetAnimation("MoveRight");
+            //testSprite = ResourceManager.GetSprite("joe_test_anim");
 
             testSprite2 = ResourceManager.GetSprite("joe_test_anim");
-
-            testSprite2.DefineAnimation("MoveRight", 0);
-            testSprite2.DefineAnimation("MoveLeft", 1);
-            testSprite2.SetAnimation("MoveRight");
             testSprite2.SetVectorPosition(new Vector2(100, 100));
+
+            player = new Player("joe_test_anim", new Position(new Vector2(150, 150)));
+
+            ICommand moveRightCommand = new MoveRight(player);
+
+            playerInput = new PlayerInput(moveRightCommand, moveRightCommand, moveRightCommand, moveRightCommand, moveRightCommand);
         }
 
         /// <summary>
@@ -81,17 +85,19 @@ namespace NitsuajGameEngine
                 Exit();
 
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
-                testSprite.SetAnimation("MoveRight");
-            if(Keyboard.GetState().IsKeyDown(Keys.Left))
-                testSprite.SetAnimation("MoveLeft");
-                
+                playerInput.MoveRight();//testSprite.SetAnimation("MoveRight");
+            if (Keyboard.GetState().IsKeyDown(Keys.Left))
+                playerInput.MoveLeft();//testSprite.SetAnimation("MoveLeft");
+
 
             // TODO: Add your update logic here
-            if (k++ % 5 == 0)
-                testSprite.IncrementFrame();
+            //if (k++ % 5 == 0)
+            //    testSprite.IncrementFrame();
 
-            if (k % 10 == 0)
-                testSprite2.IncrementFrame();
+            player.Update(gameTime);
+
+            if (k++ % 10 == 0)
+                testSprite2.UpdateAnimation(gameTime);
 
             base.Update(gameTime);
         }
@@ -106,7 +112,8 @@ namespace NitsuajGameEngine
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
-            testSprite.Draw(spriteBatch);
+            player.Draw(spriteBatch);
+            //testSprite.Draw(spriteBatch);
             testSprite2.Draw(spriteBatch);
             spriteBatch.End();
 

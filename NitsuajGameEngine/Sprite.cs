@@ -6,8 +6,10 @@ using System.Collections.Generic;
 
 namespace NitsuajGameEngine
 {
-    class Sprite : Animator, IDrawable, IAnimatable
+    class Sprite : IDrawable, IAnimatable
     {
+        private Animator animator;
+
         // Different properties for drawing the sprite
         private Texture2D texture;
         private Position position;
@@ -30,8 +32,8 @@ namespace NitsuajGameEngine
         // Use this for storing sprite animations
         //private Dictionary<string, int> animations;
 
-        public Sprite(Texture2D Texture, int Columns, int Rows)
-            :base(Texture, Columns, Rows)
+        public Sprite(Texture2D Texture, int Columns, int Rows, Animator animator)
+            //:base(Texture, Columns, Rows)
         {
             alpha = 1.0f;
             rotation = 0.0f;
@@ -41,6 +43,8 @@ namespace NitsuajGameEngine
             zDepth = 0.1f;
 
             texture = Texture;
+
+            this.animator = animator;
 
             //rows = Rows;
             //columns = Columns;
@@ -55,26 +59,12 @@ namespace NitsuajGameEngine
             position = new Position(new Vector2(50, 0));
         }
 
-        //public void DefineAnimation(string animationName, int Row)
-        //{
-        //    animations.Add(animationName, Row);
-        //}
-        //
-        //public void SetAnimation(string animationName)
-        //{
-        //    // don't attempt to change animations of there is no key that exists
-        //    if (!animations.ContainsKey(animationName))
-        //        return;
-        //
-        //    drawRect.Y = animations[animationName] * clipHeight;
-        //}
-
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(
                             texture,
                             position.GetVectorPosition(),
-                            this.GetDrawRect()/*drawRect*/,
+                            animator.GetDrawRect()/*drawRect*/,
                             Color.White * alpha,
                             rotation,
                             origin,
@@ -84,12 +74,20 @@ namespace NitsuajGameEngine
                         );
         }
 
-        //public void IncrementFrame()
-        //{
-        //    currentFrame = currentFrame < columns - 1 ? currentFrame + 1 : 0;
-        //
-        //    drawRect.X = clipWidth * currentFrame;
-        //}
+        public void DefineAnimation(string animationName, int Row)
+        {
+            animator.DefineAnimation(animationName, Row);
+        }
+
+        public void SetAnimation(string animationName)
+        {
+            animator.SetAnimation(animationName);
+        }
+
+        public void UpdateAnimation(GameTime gameTime)
+        {
+            animator.UpdateAnimation(gameTime);
+        }
 
         public void SetVectorPosition(Vector2 newPosition)
         {

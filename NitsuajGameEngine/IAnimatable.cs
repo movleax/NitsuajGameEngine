@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,6 @@ namespace NitsuajGameEngine
     {
         void DefineAnimation(string animationName, int Row);
         void SetAnimation(string animationName);
-        void IncrementFrame();
+        void UpdateAnimation(GameTime gameTime);
     }
 }

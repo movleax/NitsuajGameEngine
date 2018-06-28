@@ -9,6 +9,8 @@ namespace NitsuajGameEngine
 {
     public class Player : GameObject, IMovable
     {
+        private Vector2 velocity;
+
         public Player(string SpriteName)
             :base(SpriteName)
         {
@@ -23,12 +25,14 @@ namespace NitsuajGameEngine
 
         public void SetVelocity(Vector2 newVel)
         {
-            throw new NotImplementedException();
+            this.velocity = newVel;
         }
 
-        public void UpdatePosition()
+        public void Update(GameTime gameTime)
         {
-            throw new NotImplementedException();
+            this.SetVectorPosition(this.GetVectorPosition() + velocity);
+
+            this.UpdateAnimation(gameTime);
         }
     }
 }

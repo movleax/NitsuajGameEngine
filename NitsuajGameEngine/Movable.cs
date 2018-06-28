@@ -34,7 +34,7 @@ namespace NitsuajGameEngine
             throw new NotImplementedException();
         }
 
-        public void UpdatePosition()
+        public void Update(GameTime gameTime)
         {
             SetVectorPosition(this.position.X + Velocity.X, this.position.Y + Velocity.Y);
         }

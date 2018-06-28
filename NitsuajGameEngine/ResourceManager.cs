@@ -26,7 +26,7 @@ namespace NitsuajGameEngine
             if(!SpriteTable.ContainsKey(SpriteName))
                 throw new System.ArgumentException("Sprite does not exist");
 
-            return (Sprite)SpriteTable[SpriteName].Clone();
+            return (Sprite)SpriteTable[SpriteName].CreateCopy();
         }
     }
 }

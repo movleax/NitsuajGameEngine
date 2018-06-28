@@ -8,6 +8,6 @@ namespace NitsuajGameEngine
 {
     interface IPrototype
     {
-        Object Clone();
+        Object CreateCopy();
     }
 }

@@ -9,7 +9,7 @@ namespace NitsuajGameEngine
 {
     interface IMovable
     {
-        void UpdatePosition();
+        void Update(GameTime gameTime);
         void SetVelocity(Vector2 newVel);
     }
 }

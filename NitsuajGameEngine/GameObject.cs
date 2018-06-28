@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace NitsuajGameEngine
 {
-    public abstract class GameObject : IDrawable, IPositionable
+    public abstract class GameObject : IDrawable, IPositionable, IAnimatable
     {
         private Sprite gameSprite;
         private Position position;
@@ -25,6 +25,11 @@ namespace NitsuajGameEngine
             this.position = position;
         }
 
+        public void DefineAnimation(string animationName, int Row)
+        {
+            gameSprite.DefineAnimation(animationName, Row);
+        }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             gameSprite.Draw(spriteBatch);
@@ -33,6 +38,16 @@ namespace NitsuajGameEngine
         public Vector2 GetVectorPosition()
         {
             return position.GetVectorPosition();
+        }
+
+        public void UpdateAnimation(GameTime gameTime)
+        {
+            gameSprite.UpdateAnimation(gameTime);
+        }
+
+        public void SetAnimation(string animationName)
+        {
+            gameSprite.SetAnimation(animationName);
         }
 
         public void SetVectorPosition(Vector2 newPosition)

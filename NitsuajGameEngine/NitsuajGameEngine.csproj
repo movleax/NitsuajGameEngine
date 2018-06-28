@@ -45,6 +45,7 @@
     <Compile Include="Animator.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GameObject.cs" />
+    <Compile Include="Timer.cs" />
     <Compile Include="IAnimatable.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="IDrawable.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="Movable.cs" />
     <Compile Include="MoveRight.cs" />
     <Compile Include="Player.cs" />
+    <Compile Include="PlayerInput.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
