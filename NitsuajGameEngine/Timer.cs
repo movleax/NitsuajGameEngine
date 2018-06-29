@@ -9,25 +9,24 @@ namespace NitsuajGameEngine
 {
     class Timer
     {
-        TimeSpan timeSpan;
-        TimeSpan interval;
+        double timeSpan;
+        double interval;
 
         public Timer(long MilliSecondInterval)
         {
-            timeSpan = new TimeSpan();
-            interval = new TimeSpan(MilliSecondInterval * 10000);
-            timeSpan.Add(interval);
+            timeSpan = 0;//new TimeSpan();
+            interval = MilliSecondInterval;//new TimeSpan(5);
         }
 
         public bool HasTimerElapsed(GameTime gameTime)
         {
-            if(gameTime.TotalGameTime.Milliseconds < timeSpan.Milliseconds)
+            if(gameTime.TotalGameTime.TotalMilliseconds < timeSpan)
             {
                 return false;
             }
 
-            timeSpan = gameTime.TotalGameTime;
-            timeSpan.Add(interval);
+            timeSpan = gameTime.TotalGameTime.TotalMilliseconds;
+            timeSpan += interval;
             return true;
         }
     }
