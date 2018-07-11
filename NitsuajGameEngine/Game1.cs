@@ -45,9 +45,11 @@ namespace NitsuajGameEngine
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             SpritePrototype spriteProto = new SpritePrototype(this.Content.Load<Texture2D>("joe_test_anim"), 75, 6, 4);
-            spriteProto.DefineAnimation("MoveRight", 0);
-            spriteProto.DefineAnimation("MoveLeft", 1);
-            spriteProto.SetAnimation("MoveRight");
+            spriteProto.DefineAnimation("MoveRight", 0, 75);
+            spriteProto.DefineAnimation("MoveLeft", 1, 75);
+            spriteProto.DefineAnimation("IdleRight", 2, 175);
+            spriteProto.DefineAnimation("IdleLeft", 3, 175);
+            spriteProto.SetAnimation("IdleRight");
             ResourceManager.AddSprite("joe_test_anim", spriteProto);
 
             // TODO: use this.Content to load your game content here

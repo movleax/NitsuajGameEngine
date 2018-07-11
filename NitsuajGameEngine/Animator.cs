@@ -23,14 +23,14 @@ namespace NitsuajGameEngine
         private Timer timer;
 
         // Use this for storing sprite animations
-        private Dictionary<string, int> animations;
+        private Dictionary<string, Animation> animations;
 
         // copy constructor
         public Animator(Animator animator)
         {
             drawRect = new Rectangle(animator.drawRect.X, animator.drawRect.Y, animator.drawRect.Width, animator.drawRect.Height);
 
-            animations = new Dictionary<string, int>(animator.animations);
+            animations = new Dictionary<string, Animation>(animator.animations);
 
             timer = animator.timer;
 
@@ -56,12 +56,12 @@ namespace NitsuajGameEngine
             timer = new Timer(MilliSecondInterval);
 
             drawRect = new Rectangle(0, 0, clipWidth, clipHeight);
-            animations = new Dictionary<string, int>();
+            animations = new Dictionary<string, Animation>();
         }
 
-        public void DefineAnimation(string animationName, int Row)
+        public void DefineAnimation(string animationName, int Row, long MilliSecondInterval)
         {
-            animations.Add(animationName, Row);
+            animations.Add(animationName, new Animation(Row, MilliSecondInterval));
         }
 
         public void SetAnimation(string animationName)
@@ -70,7 +70,8 @@ namespace NitsuajGameEngine
             if (!animations.ContainsKey(animationName))
                 return;
 
-            drawRect.Y = animations[animationName] * clipHeight;
+            drawRect.Y = animations[animationName].GetRow() * clipHeight;
+            timer.SetInterval(animations[animationName].GetMillisecondInterval());
         }
 
         public void UpdateAnimation(GameTime gameTime)

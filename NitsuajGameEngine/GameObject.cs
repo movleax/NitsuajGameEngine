@@ -25,9 +25,9 @@ namespace NitsuajGameEngine
             this.position = position;
         }
 
-        public void DefineAnimation(string animationName, int Row)
+        public void DefineAnimation(string animationName, int Row, long MilliSecondInterval)
         {
-            gameSprite.DefineAnimation(animationName, Row);
+            gameSprite.DefineAnimation(animationName, Row, MilliSecondInterval);
         }
 
         public void Draw(SpriteBatch spriteBatch)

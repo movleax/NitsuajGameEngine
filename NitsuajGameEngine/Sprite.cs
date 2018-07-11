@@ -74,9 +74,9 @@ namespace NitsuajGameEngine
                         );
         }
 
-        public void DefineAnimation(string animationName, int Row)
+        public void DefineAnimation(string animationName, int Row, long MilliSecondInterval)
         {
-            animator.DefineAnimation(animationName, Row);
+            animator.DefineAnimation(animationName, Row, MilliSecondInterval);
         }
 
         public void SetAnimation(string animationName)

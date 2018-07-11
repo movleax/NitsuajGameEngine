@@ -16,7 +16,6 @@ namespace NitsuajGameEngine
         {
             this.character = player;
             this.velocityVector = new Vector2(1, 0);
-            this.character.SetAnimation("MoveRight");
         }
 
         public void Execute()

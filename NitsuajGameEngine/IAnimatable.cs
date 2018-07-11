@@ -9,7 +9,7 @@ namespace NitsuajGameEngine
 {
     interface IAnimatable
     {
-        void DefineAnimation(string animationName, int Row);
+        void DefineAnimation(string animationName, int Row, long MilliSecondInterval);
         void SetAnimation(string animationName);
         void UpdateAnimation(GameTime gameTime);
     }

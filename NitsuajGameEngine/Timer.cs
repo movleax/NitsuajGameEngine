@@ -18,6 +18,12 @@ namespace NitsuajGameEngine
             interval = MilliSecondInterval;//new TimeSpan(5);
         }
 
+        public void SetInterval(long MilliSecondInterval)
+        {
+            timeSpan = (timeSpan - interval) + MilliSecondInterval;
+            this.interval = MilliSecondInterval;
+        }
+
         public bool HasTimerElapsed(GameTime gameTime)
         {
             if(gameTime.TotalGameTime.TotalMilliseconds < timeSpan)
