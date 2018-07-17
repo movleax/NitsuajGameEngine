@@ -11,8 +11,6 @@ namespace NitsuajGameEngine
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Sprite testSprite;
-        Sprite testSprite2;
         Player player;
         PlayerInput playerInput;
         
@@ -44,12 +42,20 @@ namespace NitsuajGameEngine
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            SpritePrototype spriteProto = new SpritePrototype(this.Content.Load<Texture2D>("joe_test_anim"), 75, 6, 4);
+            SpritePrototype spriteProto = new SpritePrototype(this.Content.Load<Texture2D>("joe_test_anim"), 6, 12);
             spriteProto.DefineAnimation("MoveRight", 0, 75);
             spriteProto.DefineAnimation("MoveLeft", 1, 75);
             spriteProto.DefineAnimation("IdleRight", 2, 175);
             spriteProto.DefineAnimation("IdleLeft", 3, 175);
-            spriteProto.SetAnimation("IdleRight");
+            spriteProto.DefineAnimation("MoveUp", 4, 75);
+            spriteProto.DefineAnimation("MoveDown", 5, 75);
+            spriteProto.DefineAnimation("IdleUp", 6, 175);
+            spriteProto.DefineAnimation("IdleDown", 7, 175);
+            spriteProto.DefineAnimation("AttackRight", 8, 50);
+            spriteProto.DefineAnimation("AttackLeft", 9, 50);
+            spriteProto.DefineAnimation("AttackUp", 10, 50);
+            spriteProto.DefineAnimation("AttackDown", 11, 50);
+            spriteProto.SetAnimation("IdleDown");
             ResourceManager.AddSprite("joe_test_anim", spriteProto);
 
             // TODO: use this.Content to load your game content here
@@ -59,8 +65,18 @@ namespace NitsuajGameEngine
 
             ICommand moveRightCommand = new MoveRight(player);
             ICommand moveLeftCommand = new MoveLeft(player);
+            ICommand moveUpCommand = new MoveUp(player);
+            ICommand moveDownCommand = new MoveDown(player);
+            ICommand idleLeftCommand = new IdleLeft(player);
+            ICommand idleRightCommand = new IdleRight(player);
+            ICommand idleUpCommand = new IdleUp(player);
+            ICommand idleDownCommand = new IdleDown(player);
+            ICommand attackLeftCommand = new AttackLeft(player);
+            ICommand attackRightCommand = new AttackRight(player);
+            ICommand attackUpCommand = new AttackUp(player);
+            ICommand attackDownCommand = new AttackDown(player);
 
-            playerInput = new PlayerInput(moveRightCommand, moveLeftCommand, moveRightCommand, moveRightCommand, moveRightCommand);
+            playerInput = new PlayerInput(moveRightCommand, moveLeftCommand, moveUpCommand, moveDownCommand, idleRightCommand, idleLeftCommand, idleUpCommand, idleDownCommand, attackRightCommand, attackLeftCommand, attackUpCommand, attackDownCommand);
         }
 
         /// <summary>
@@ -82,11 +98,23 @@ namespace NitsuajGameEngine
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            if (Keyboard.GetState().IsKeyUp(Keys.Right) || Keyboard.GetState().IsKeyUp(Keys.Left) || Keyboard.GetState().IsKeyUp(Keys.Up) || Keyboard.GetState().IsKeyUp(Keys.Down))
+                playerInput.Idle();
+            if (Keyboard.GetState().IsKeyUp(Keys.Space))
+            {
+                playerInput.ResetAttack();
+                playerInput.Idle();
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.Space))
+                playerInput.Attack();
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
                 playerInput.MoveRight();
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
                 playerInput.MoveLeft();
-
+            if (Keyboard.GetState().IsKeyDown(Keys.Up))
+                playerInput.MoveUp();
+            if (Keyboard.GetState().IsKeyDown(Keys.Down))
+                playerInput.MoveDown();
 
             // TODO: Add your update logic here
             //if (k++ % 5 == 0)

@@ -15,7 +15,7 @@ namespace NitsuajGameEngine
         public MoveRight(Player player)
         {
             this.character = player;
-            this.velocityVector = new Vector2(1, 0);
+            this.velocityVector = new Vector2(2, 0);
         }
 
         public void Execute()

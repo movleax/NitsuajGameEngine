@@ -42,7 +42,7 @@ namespace NitsuajGameEngine
             totalFrames = animator.totalFrames;
         }
 
-        public Animator(Texture2D Texture, long MilliSecondInterval, int Columns, int Rows)
+        public Animator(Texture2D Texture, int Columns, int Rows)
         {
             rows = Rows;
             columns = Columns;
@@ -51,9 +51,8 @@ namespace NitsuajGameEngine
 
             clipWidth = Texture.Width / columns;
             clipHeight = Texture.Height / rows;
-            //animations = new Dictionary<string, int>();
 
-            timer = new Timer(MilliSecondInterval);
+            timer = new Timer(500);
 
             drawRect = new Rectangle(0, 0, clipWidth, clipHeight);
             animations = new Dictionary<string, Animation>();

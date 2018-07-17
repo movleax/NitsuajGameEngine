@@ -7,21 +7,21 @@ using System.Threading.Tasks;
 
 namespace NitsuajGameEngine
 {
-    class MoveLeft : ICommand
+    class AttackDown : ICommand
     {
         Player character;
         Vector2 velocityVector;
 
-        public MoveLeft(Player player)
+        public AttackDown(Player player)
         {
             this.character = player;
-            this.velocityVector = new Vector2(-2, 0);
+            this.velocityVector = new Vector2(0, 0);
         }
 
         public void Execute()
         {
             character.SetVelocity(velocityVector);
-            character.SetAnimation("MoveLeft");
+            character.SetAnimation("AttackDown");
         }
     }
 }

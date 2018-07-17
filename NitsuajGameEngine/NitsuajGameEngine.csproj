@@ -44,9 +44,19 @@
   <ItemGroup>
     <Compile Include="Animation.cs" />
     <Compile Include="Animator.cs" />
+    <Compile Include="AttackDown.cs" />
+    <Compile Include="AttackLeft.cs" />
+    <Compile Include="AttackRight.cs" />
+    <Compile Include="AttackUp.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GameObject.cs" />
+    <Compile Include="IdleDown.cs" />
+    <Compile Include="IdleLeft.cs" />
+    <Compile Include="IdleRight.cs" />
+    <Compile Include="IdleUp.cs" />
+    <Compile Include="MoveDown.cs" />
     <Compile Include="MoveLeft.cs" />
+    <Compile Include="MoveUp.cs" />
     <Compile Include="Timer.cs" />
     <Compile Include="IAnimatable.cs" />
     <Compile Include="ICommand.cs" />

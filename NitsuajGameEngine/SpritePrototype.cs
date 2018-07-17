@@ -23,9 +23,9 @@ namespace NitsuajGameEngine
             this.Rows = Rows;
         }
 
-        public SpritePrototype(Texture2D Texture, long MilliSecondInterval, int Columns, int Rows)
+        public SpritePrototype(Texture2D Texture, int Columns, int Rows)
         {
-            this.animator = new Animator(Texture, MilliSecondInterval, Columns, Rows);
+            this.animator = new Animator(Texture, Columns, Rows);
             this.Texture = Texture;
             this.Columns = Columns;
             this.Rows = Rows;
